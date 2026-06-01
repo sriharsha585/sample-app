@@ -50,16 +50,17 @@ stages {
         steps {
 
             withCredentials([
-                string(
-                    credentialsId: 'github-token',
-                    variable: 'github-token'
-                )
-            ]) {
+            usernamePassword(
+                credentialsId: 'github-creds',
+                usernameVariable: 'GITHUB_USER',
+                passwordVariable: 'GITHUB_TOKEN'
+            )
+        ]) {
 
                 sh '''
                 rm -rf gitops-demo
 
-                git clone https://oauth2:${GITHUB_TOKEN}@github.com/sriharsha585/gitops-demo.git
+                git clone https://${GITHUB_USER}:${GITHUB_TOKEN}@github.com/sriharsha585/gitops-demo.git
 
                 cd gitops-demo/
 
@@ -76,7 +77,7 @@ stages {
 
                 git commit -m "Updated image to $BUILD_NUMBER" || true
 
-                git push origin main
+                git push https://${GITHUB_USER}:${GITHUB_TOKEN}@github.com/sriharsha585/gitops-demo.git main
                 '''
             }
         }
