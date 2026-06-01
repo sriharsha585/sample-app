@@ -59,7 +59,7 @@ stages {
                 sh '''
                 rm -rf gitops-demo
 
-                git clone https://$github-token@github.com/sriharsha585/gitops-demo.git
+                git clone https://${github-token}@github.com/sriharsha585/gitops-demo.git
 
                 cd gitops-demo/
 
