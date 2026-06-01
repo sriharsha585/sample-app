@@ -99,6 +99,4 @@ post {
         sh 'docker images | head'
     }
 }
-```
-
 }
