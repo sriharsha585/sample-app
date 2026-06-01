@@ -61,7 +61,7 @@ stages {
 
                 git clone https://$github-token@github.com/sriharsha585/gitops-demo.git
 
-                cd gitops-demo/nginx
+                cd gitops-demo/
 
                 sed -i "s|image:.*|image: $IMAGE:$BUILD_NUMBER|g" deployment.yaml
 
